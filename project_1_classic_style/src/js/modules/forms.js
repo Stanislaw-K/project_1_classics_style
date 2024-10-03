@@ -51,10 +51,28 @@ const forms = (state) => {
                 .catch(() => statusMessage.textContent = message.failure)
                 .finally(() => {
                     clearInputs();
+                    for (let key in state) {
+                        delete state[key];
+                    }
+
                     setTimeout(() => {
                         statusMessage.remove();
+                        if (e.target.closest('.popup_engineer')) {
+                            e.target.closest('.popup_engineer').style.display = 'none';
+                            document.body.style.overflow = "";
+                            document.body.style.marginRight = `0px`;
+                        } else if (e.target.closest('.popup')) {
+                            e.target.closest('.popup').style.display = 'none';
+                            document.body.style.overflow = "";
+                            document.body.style.marginRight = `0px`;
+                        }
+                        // location.reload();
                     }, 5000);
+                    // setTimeout(() => {
+
+                    // }, 7000);
                 });
+
         });
     });
 };
